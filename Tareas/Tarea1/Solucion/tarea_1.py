@@ -41,6 +41,7 @@ def ejercicio_3(archivo):
     ...
     return L
 
+#Agregar M como input
 def ejercicio_4(M):
     x = 0.
     i = 1
