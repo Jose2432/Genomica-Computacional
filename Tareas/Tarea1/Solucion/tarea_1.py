@@ -1,22 +1,13 @@
+__author__ = "Guzmán Cortés Dulce Dyliang"
+__author__ = "Marin Parra Jose Guadalupe de Jesus"
+__author__ = "Rangel Limón Erik"
+
 #!coding:utf8
 import math
 import random
 import re
 
-__author__ = "Marin Parra Jose Guadalupe de Jesus"
-__NoCuenta__ = "316264176"
-
-#Ejercicio 1 (c)
-#cadena = 'GATTATATACATAGTAGTATA'
-#er = 'TA'
-#print('Dada la cadena',cadena)
-#for match in re.finditer(er, cadena):
-#    s = match.start()
-#    e = match.end()
-#    print('Extiste un "%s" en %d:%d' % (cadena[s:e], s, e))
-
-#Inicio ATG,TTG,GTG
-#Final TAG
+#Ejercicio 2
 cero   = 'ATATATACATACTGGTAATGGGCGCGCGTGTGTTAAGTTCTGTTGTAGGGGTGATTAGGGGCG'#
 uno    = 'GGCCCACACCCCACACCAATATATGTGGTGTGGGCTCCACTCTCTCGCGCTCGCGCTGGGGAT'
 dos    = 'ATAAGGTGTGTGGGCGCGCCCCGCGCGCGCGTTTTTTCGCGCGCCCCCGCGCGCGCGCGCGCG'
@@ -30,18 +21,34 @@ nueve  = 'GCTGGGCTCGCTCGATGCGCGCGGGCGCGCGACCGCGGACGGCGTCGCTGCTAAATGGGCTTC'
 lista_secuencias = [cero,uno,dos,tres,cuatro,cinco,seis,siete,ocho,nueve]
 def ejercicio_2(lista_secuencias):
     L = []
-    r = re.compile('[ATG,TTG,GTG].*(TAG)') #Agregar los tripletes de nucleotidos
+    r = re.compile('(ATG|TTG|GTG)([ACTG]{3})+(TAG)')
     L = [i for i, item in enumerate(lista_secuencias) if re.search(r, item)]
     return L
 
-print('Ejercicio 2:',ejercicio_2(lista_secuencias))
+#Auxiliar para el ejercicio_3 que se encarga de leer un archivo
+def lee_archivo(nombre_archivo):
+    with open(nombre_archivo, "r") as file:
+        for line in file:
+            yield line.strip()
 
+promotores = ["AGATAG", "TGATAG", "AGATAA", "TGATAA"]
+
+#Ejercicio 3
 def ejercicio_3(archivo):
     L = []
-    ...
+    for line in lee_archivo(archivo):
+        cuenta = 0
+        line = re.split(r'\s+', line)[1]
+        for _ in re.finditer('|'.join(promotores), line):
+            cuenta += 1
+        L.append(cuenta)
     return L
 
+<<<<<<< HEAD
 #Agregar M como input
+=======
+#Ejercicio 4
+>>>>>>> eb3dc92d6f73540e03557f66275ccb14d34b267b
 def ejercicio_4(M):
     x = 0.
     i = 1
@@ -56,4 +63,28 @@ def ejercicio_4(M):
     x = 4*D/i
     return x
 
-#print("Ejercicio 4:",ejercicio_4(3))
+#------------------------------------------ M E N U ------------------------------------------
+
+#Ejercicio 1 (c)
+cadena = 'GATTATATACATAGTAGTATA'
+er = 'TA'
+print('\nEJERCICIO 1.c \nDada la cadena',cadena)
+for match in re.finditer(er, cadena):
+    s = match.start()
+    e = match.end()
+    print('Extiste un "%s" en %d:%d' % (cadena[s:e], s, e))
+
+print('\nEJERCICIO 2 \nLas lineas con genes validos son:',ejercicio_2(lista_secuencias),"\n")
+
+print('EJERCICIO 3 \nPara el archivo promotores.txt, tenemos lo siguiente.\n',ejercicio_3('promotores.txt'),'\n')
+
+while True:
+  try:
+     inputM = int(input("EJERCICIO 4 \nIngresa un numero entero.\n"))
+  except ValueError:
+     print("La cadena que ingresaste no es un numero o lo escribiste mal.\n")
+     break
+  else:
+     print("El numero ingresado es " + str(inputM))
+     print("La solucion del ejercicio 4 con el numero " + str(inputM) + " ingresado es:", ejercicio_4(inputM),"\n")
+     break
