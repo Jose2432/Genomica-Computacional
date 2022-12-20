@@ -1,0 +1,453 @@
+#+title: Análisis de un algoritmo más eficiente para determinar la similitud entre genomas con un enfoque en la teoría de gráficas
+
+ 
+#+author: Jose Guadalupe de Jesús Marín Parra
+#+author: Erik Rangel Limón
+#+startup: latexpreview
+
+* Introducción
+
+  En estudios de filogenómica es una herramienta indispensable
+  construir el árbol filogenético de las secuencias a analizar, pues a
+  partir de dicho árbol es posible determinar las similitudes y la
+  relación evolutiva que existe entre ellas a partir de las distancias
+  a la que se encuentran en el árbol.
+
+  Ya teniendo las secuencias, la construcción de éste árbol consiste
+  de manera general en dos pasos:
+
+  - Creación de la matriz de distancias
+
+  - Agrupar por algún método de /clustering/ con los datos a partir de
+    la matriz de distancias.
+
+
+  En una matriz de distancias del análisis de $n$ especies, cada
+  secuencias será representada por un número en el conjunto
+  $I=\{1,\ldots,n\}$. Si $M$ es la matriz de distancias y $i,j\in I$;
+  la entrada $M_{ij}$ de la matriz tendrá un valor que representará la
+  distancia a la que se encuentra la secuencia $i$ de la secuencia
+  $j$, es decir, mientras haya un valor mayor, más distintas son una
+  de la otra, y mientras haya un valor menor, más parecidas serán.
+
+* ¿Cómo determinamos la distancia entre dos secuencias?
+
+  Es posible determinar una distancia precisa entre dos secuencias a
+  partir de realizar algún algoritmo de alineamiento, y a partir del
+  resultado determinar un puntaje para la distancia entre ellas.
+
+  Uno de los algoritmos más eficientes que pueden realizar el
+  alineamiento es la propuesta de /Needleman Wunsch/, el cual consiste
+  de crear una matriz de tamaño $n\times m$ con $n$ y $m$ siendo la
+  longitud de las secuencias respectivamente; se itera cada entrada en
+  la matriz determinando un puntaje para la entrada, y al final
+  reconstruye el alineamiento.
+
+  Sin embargo notemos que el primer paso hace que la complejidad en
+  tiempo y en espacio sea de $O(nm)$, lo cual haría muy ineficiente el
+  analizar varias secuencias.
+
+* Ineficiencia para el análisis de múltiples secuencias
+
+  Supongamos que queremos construir la matriz de distancias de $k$
+  secuencias de especies de una misma familia, donde la longitud de la
+  mayor de ellas es de $n$.
+
+  Para el cálculo de la matriz de distancias necesitamos obtener la
+  distancia para todos los subconjuntos posibles de dos elementos de
+  las $k$ secuencias, las cuales son un total de $\binom{k}{2}$.
+
+  Como para cada subconjunto de los mencionados se realizaría el
+  algoritmo de alineaminto, en donde las longitudes son a lo más $n$,
+  tendríamos entonces que cada alienamiento tomaría a lo más $n^2$
+  pasos.
+
+  De esta manera en total tendríamos que la construcción de la matriz
+  de distancias tomaría a lo más $\binom{k}{2}n^2\in O(k^2n^2)$ pasos. Pero
+  considerando el gran tamaño que pueden llegar a tener las
+  secuencias, si se requiere analizar una gran cantidad de secuencias
+  de tamaño largo, el uso de éste método resulta inviable precisamente
+  por su complejidad computacional.
+
+* Métodos numéricos
+
+  Por ésta razón se vuelve necesaria la búsqueda de mejores métodos
+  para el cálculo de las distancias entre secuencias, de las cuales
+  destacamos aquellas que tienen un enfoque probabilístico.
+
+  Por lo general éstos forman vectores a partir de subcadenas de la
+  secuencia de tamaño $k$, también llamados $k$ -meros, y a partir de
+  ellos se realizan operaciones para determinar la distancia.
+
+  Por ejemplo tomar subsecuencias de tamaño $4$ se haría como sigue:
+  
+  ACTTCGAT
+  --------
+  ACTT
+   CTTC
+    TTCG
+     TCGA
+      CGAT
+  
+  Sin embargo, varios estudios han mostrado resultados distintos para
+  los valores que puede tomar ésta $k$, y se ha mostrado que una
+  elección óptima para la gran mayoría de los casos es tomar esta $k$
+  como $3$.
+
+* Método basado en gráficas
+
+  Recordando nuestros curso de gráficas y juegos; una gráfica
+  bipartita es como sigue:
+
+  [[./images/bipartita.png]]
+
+  Ésta puede ser representada por una matriz de adyacencia, sin
+  embargo podemos reducirla como se muestra a continuación dado que
+  los conjuntos independientes no tienen vértices entre sí.
+
+  [[./images/matrizbipartita.png]]
+
+  Notemos entonces que la matriz de una gráfica bipartita completa
+  tendría sólo $1$ en todas las entradas, ya que todos lo vértices de
+  un conjunto independiente tienen una arista con todos los vértices
+  del otro conjunto independiete. Ésto en particular nos puede ser
+  útil para almacenar pesos de todas las aristas.
+
+  Por lo que en el método de gráficas para contar las subcadenas de
+  $3$ nucleótidos manejaremos la siguiente estructira de datos.
+
+  [[./images/bipartitanuc.png]]
+
+  En donde iteraremos cada 3 nucleótidos de la cadena de manera
+  superpuesta, e iremos añadiendo en 1 la respectiva entrada de la
+  subcadena que se está leyendo a la matriz de adyacencias.
+
+  Nosotros realizamos nuestra implementación y la podemos ver a
+  continuación:
+
+  #+begin_src python
+class WCompleteBipartite:
+
+    def __init__(self,v1,v2):
+        self.v1 = v1
+        self.indexv1 = {}
+        for i in range(len(v1)):
+            self.indexv1.update({v1[i] : i})
+        self.v2 = v2
+        self.indexv2 = {}
+        for i in range(len(v2)):
+            self.indexv2.update({v2[i] : i})
+        self.matrix = [0] * len(v1)
+        for i in range(len(v1)):
+            self.matrix[i] = [0] * len(v2)
+
+    def update(self,u,v):
+        if self.indexv1.get(u) != None:
+            if self.indexv2.get(v) != None:
+                w = self.matrix[self.indexv1[u]][self.indexv2[v]]
+                self.matrix[self.indexv1[u]][self.indexv2[v]] = w + 1
+                return
+            elif self.indexv1.get(v) != None:
+                raise Exception("Two elements are in the same independent set")
+            else:
+                raise Exception(f"No such element {v}")
+        elif self.indexv1.get(v) != None:
+            if self.indexv2.get(u) != None:
+                w = self.matrix[self.indexv1[v]][self.indexv2[u]]
+                self.matrix[self.indexv1[v]][self.indexv2[u]] = w + 1
+                return
+            elif self.indexv1.get(u) != None:
+                raise Exception("Two elements are in the same independent set")
+            else:
+                raise Exception(f"No such element {v}")
+        raise Exception("No such elements")
+  #+end_src
+
+* Cálculo de la matriz de distancias
+
+  Primero para cada secuencia que vayamos a analizar le creamos su
+  respectiva gráfica bipartita con pesos.
+
+  Y terminando, creamos la matriz llenándo cada una con la siguiente
+  fórmula.
+
+  \[M_{XY}=\frac{\sum_{i=0}^{15}\sum_{j=0}^{3}|X_{ij}-Y_{ij}|}{64}\]
+
+  Donde $X$ y $Y$ son dos secuencias distintas y $X_{ij}$ y $Y_{ij}$
+  es el peso que tiene el trinucleótido $ij$ en su respectiva gráfica
+  bipartita. Por lo tanto éste es el promedio aritmético de las
+  diferencias entre apariciones de los trinucleótidos.
+
+  Al final reducimos la complejidad de la creación de la matriz de
+  distancias a $64\binom{k}{2}+kn\in O(k^2+kn)=O(kn)$.
+
+  #+begin_src python
+class DataGen:
+
+    def __init__(self,folder):
+        self.dinucleotide = ['AA','AC','AT','AG','CA','CC','CT','CG','TA','TC','TT','TG','GA','GC','GT','GG']
+        self.nucleotide = ['A','C','T','G']
+        self.data = {}
+        for filename in os.scandir(folder):
+            if filename.is_file():
+                self.scanfile(filename.path)
+
+    def scansecuence(self, name, secuence):
+        bipartite_graph = WCompleteBipartite(self.dinucleotide,self.nucleotide)
+        for i in range(len(secuence)):
+            if (i+2 >= len(secuence) - 1):
+                break
+            if secuence[i] not in self.nucleotide or secuence[i+1] not in self.nucleotide or secuence[i+2] not in self.nucleotide:
+                continue
+            u = secuence[i:i+2]
+            v = secuence[i+2]
+            bipartite_graph.update(u,v)
+        if name in self.data:
+            count = 0
+            for k in self.data:
+                if re.split(r'\s', k)[0] == name:
+                    count = count + 1
+            name = name + f' ({count - 1})'
+        self.data.update({name : bipartite_graph})
+
+    def scanfile(self,filename):
+        print(f'Scanning {filename}...')
+        with open(filename, 'r') as file:
+            lines = file.readlines()
+            firstline = re.split(r'\s', lines[0])
+            name = firstline[0][1:] + ' ' + firstline[1] + r'\n' + re.split(r'\.', re.split(r'/', filename)[2])[0]
+            secuence = lines[1]
+            self.scansecuence(name, secuence)
+
+class DistanceMatrix:
+
+    def __init__(self, data):
+        print('Generating distance matrix')
+        self.data = data
+        self.files = list(data.keys())
+        self.distance = [0] * len(self.files)
+        for i in range(len(self.files)):
+            self.distance[i] = [0] * len(self.files)
+        self.fillDistance()
+
+    def fillDistance(self):
+        for i in range(len(self.files)):
+            for j in range(len(self.files)):
+                if (i == j):
+                    continue
+                else:
+                    self.distance[i][j] = self.distanceOperation(self.files[i], self.files[j])
+
+    def distanceOperation(self, x, y):
+        x_values = self.data[x].matrix
+        y_values = self.data[y].matrix
+        addition = 0
+        for i in range(len(x_values)):
+            for j in range(len(x_values[i])):
+                addition = addition + abs(x_values[i][j]-y_values[i][j])
+        return (addition / 64)
+  #+end_src
+
+* Creación del árbol filogenético con UPGMA
+
+  El enfoque de éste proyecto está en la creación de la matriz de
+  distancias por el método de gráficas bipartitas, por lo que no nos
+  enfocaremos en una implementación eficiente del algoritmo UPGMA,
+  sino dar una idea general.
+
+  Cada entrada de la matriz de distancias será un cluster
+  (inicialmente todos serán nodos simples de un árbol binario), y en
+  cada iteración buscamos la entrada en la matriz con el valor menor.
+  Si el valor menor está en los clústeres $\mathcal{A}$ y $\mathcal{B}$, creamos el nuevo
+  clúster $\mathcal{A}\cup\mathcal{B}$, al que su nodo raíz tendrá un valor de $d_{\mathcal{A},\mathcal{B}}/2$ y
+  como hijos izquierdo y derecho a $\mathcal{A}$ y $\mathcal{B}$ respectivamente.
+
+  Posteriormente quitamos las columnas correspondientes a los
+  clústeres $\mathcal{A}$ y $\mathcal{B}$ y en su lugar añadimos la fila y columna
+  de $\mathcal{A}\cup\mathcal{B}$, y actualizaremos todas las casillas incidentes a
+  éste clúster con la siguiente fórmula (siendo $\mathcal{X}$ uno de ellos):
+
+  \[d_{\mathcal{A}\cup\mathcal{B},X}=\frac{|\mathcal{A}|d_{\mathcal{A},\mathcal{X}}+|\mathcal{B}|d_{\mathcal{B},\mathcal{X}}}{|\mathcal{A}|+|\mathcal{B}|}\]
+
+  Y repetimos el proceso hasta tener un sólo clúster.
+
+  Nosotros hicimos una implementación trivial de éste algoritmo en
+  tiempo $O(k^3)$ con $k$ el número de secuencias analizadas.
+
+  #+begin_src python
+from binarytree import Node
+
+class UpgmaMatrix:
+
+    def __init__(self, files, distance):
+        self.leaves = files
+        self.distance = distance
+
+    def countLeaves(self, node):
+        if node == None:
+            return 0
+        if node.left == None and node.right == None:
+            return 1
+        if node.left == None:
+            return self.countLeaves(node.right)
+        if node.right == None:
+            return self.countLeaves(node.left)
+        return self.countLeaves(node.left) + self.countLeaves(node.right)
+
+    def distanceOperation(self, card_a, card_b, d_ax, d_bx):
+        numerator = card_a * d_ax + card_b * d_bx
+        denominator = card_a + card_b
+        return numerator / denominator
+
+    def getFilTree(self):
+        print('Creating phylogenetic tree...')
+        fil_leaves = []
+        for i in range(len(self.leaves)):
+            fil_leaves.append(Node(self.leaves[i]))
+        tree_distance = self.distance.copy()
+        while (True):
+            leaf_index = {}
+            for i in range(len(fil_leaves)):
+                leaf_index.update({fil_leaves[i] : i})
+            minvalue = -1
+            minleaf_l = -1
+            minleaf_r = -1
+            for i in range(len(tree_distance)):
+                for j in range(len(tree_distance[i])):
+                    if i == j:
+                        continue
+                    if minvalue == -1:
+                        minvalue = tree_distance[i][j]
+                        minleaf_l = i
+                        minleaf_r = j
+                        continue
+                    if tree_distance[i][j] < minvalue:
+                        minvalue = tree_distance[i][j]
+                        minleaf_l = i
+                        minleaf_r = j
+                        continue
+            node_l = fil_leaves[minleaf_l]
+            node_r = fil_leaves[minleaf_r]
+            fil_leaves.remove(node_l)
+            fil_leaves.remove(node_r)
+            subtree = Node(round(minvalue / 2,2))
+            subtree.left = node_l
+            subtree.right = node_r
+            fil_leaves.insert(0, subtree)
+            if (len(fil_leaves) == 1):
+                break
+            new_distance = [0] * len(fil_leaves)
+            for i in range(len(new_distance)):
+                new_distance[i] = [0] * len(fil_leaves)
+            card_a = self.countLeaves(node_l)
+            card_b = self.countLeaves(node_r)
+            for i in range(1,len(fil_leaves)):
+                d_ax = tree_distance[minleaf_l][leaf_index[fil_leaves[i]]]
+                d_bx = tree_distance[minleaf_r][leaf_index[fil_leaves[i]]]
+                dist = self.distanceOperation(card_a,card_b,d_ax,d_bx)
+                new_distance[0][i] = dist
+                new_distance[i][0] = dist
+            for i in range(1,len(fil_leaves)):
+                for j in range(i+1,len(fil_leaves)):
+                    val = tree_distance[leaf_index[fil_leaves[i]]][leaf_index[fil_leaves[j]]]
+                    new_distance[i][j] = val
+                    new_distance[j][i] = val
+            tree_distance = new_distance
+        print('¡Phylogenetic tree generated!')
+        return fil_leaves[0]
+  #+end_src
+
+* Programas
+
+  Para recrear los resultados, se necesitaron los siguientes programas
+
+  - =python3= para el script en general (/nosotros utilizamos la versión/
+    =3.10.8=)
+    
+  - Paquetería =binarytree= para utilizar árboles binarios como
+    estructura de datos.
+
+    #+begin_src bash
+$ pip install binarytree
+    #+end_src
+
+  - Programa =graphviz= para convertir el árbol filogenético en archivo
+    pdf.
+
+
+  Cabe decir que no seguimos el formato de imagen tradicional usada
+  para el árbol filogenético, sólo es para representar de manera
+  visual el resultado del nuestro algoritmo.
+
+* Resultados
+
+  Realizamos dos pruebas:
+
+  - El árbol filogenético de 41 mamíferos a partir de su DNA
+    mitocondrial.
+
+  - El árbol filogenético de 59 genomas completos pertenecientes a
+    bacterias de 15 familias distintas.
+
+
+  Estando en la carpeta de nuestro repositorio, se crearán ambos
+  árboles en la carpeta =src/output/= con las órdenes:
+
+  #+begin_src bash
+$ cd src
+$ python3 graph_comparison.py
+  #+end_src
+
+  (Se tiene que descomprimir primero el archivo
+  =src/input/bacteria.zip=)
+  
+** Mamíferos
+
+   Los mamíferos analizados fueron los siguientes:
+
+   [[./images/mamiferos1.png]]
+
+   [[./images/mamiferos2.png]]
+   
+   La imagen completa es la siguiente:
+
+   [[../src/output/mamiferos.pdf]]
+   
+** Bacterias
+
+   Las familias de bacterias analizadas fueron las siguientes
+
+   [[./images/baceria1.png]]
+
+   [[./images/baceria2.png]]
+
+   La imagen completa es la siguiente:
+
+   [[../src/output/bacteria.pdf]]
+
+* Conclusión
+
+  Vimos que por medio de un método que usa como estructura de datos
+  base a las gráficas bipartitas se reduce considerablemente la
+  complejidad que tiene el analizar una gran cantidad de secuencias,
+  además de generar datos precisos de acuerdo a las investigaciones
+  que se han hecho con respecto a la longitud de subsecuencias.
+
+  Es importante la investigación de métodos para calcular la distancia
+  prescindiendo de algoritmos de alineamiento, pues aunque éstos
+  puedan dar una distancia precisa sobre dos secuencias, son inviables
+  al momento de procesar grandes cantidades de datos.
+
+* Referencias
+
+  1. Das, S., Das, A., Bhattacharya, D. & Tibarewala, D. (2020). A new graph-theoretic approach to determine the similarity of genome sequences based on nucleotide triplets. /Genomics/, 112(6), 4701-4714.
+     
+     https://www.sciencedirect.com/science/article/pii/S088875431930638X
+     
+  2. Das, S., Deb, T., Dey, N., Ashour, A. S., Bhattacharya, D. & Tibarewala, D. (2018). Optimal choice of k-mer in composition vector method for genome sequence comparison. /Genomics/, 110(5), 263-273.
+
+      https://www.sciencedirect.com/science/article/pii/S0888754317301453
+      
+  3. Wikipedia contributors. (2022, 16 octubre). /UPGMA/. Wikipedia.
+
+      https://en.wikipedia.org/wiki/UPGMA

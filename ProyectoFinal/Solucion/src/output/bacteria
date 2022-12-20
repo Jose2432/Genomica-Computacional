@@ -1,0 +1,236 @@
+digraph {
+	node [color=lightgray fillcolor=lightgray fontcolor=black shape=record style="filled, rounded"]
+	140579096373008 [label="<l>|<v> 25692.79|<r>"]
+	140579096373008:l -> 140579096272208:v
+	140579096373008:r -> 140579096268800:v
+	140579096272208 [label="<l>|<v> 25210.19|<r>"]
+	140579096272208:l -> 140579096269712:v
+	140579096272208:r -> 140579096325296:v
+	140579096268800 [label="<l>|<v> 14084.63|<r>"]
+	140579096268800:l -> 140579096272352:v
+	140579096268800:r -> 140579096271824:v
+	140579096269712 [label="<l>|<v> 18816.22|<r>"]
+	140579096269712:l -> 140579096272064:v
+	140579096269712:r -> 140579096275952:v
+	140579096325296 [label="<l>|<v> 1839.77|<r>"]
+	140579096325296:l -> 140579096320112:v
+	140579096325296:r -> 140579096314688:v
+	140579096272352 [label="<l>|<v> 9325.79|<r>"]
+	140579096272352:l -> 140579096269040:v
+	140579096272352:r -> 140579096322608:v
+	140579096271824 [label="<l>|<v> 8000.19|<r>"]
+	140579096271824:l -> 140579096268224:v
+	140579096271824:r -> 140579096327744:v
+	140579096272064 [label="<l>|<v> 15218.92|<r>"]
+	140579096272064:l -> 140579096272256:v
+	140579096272064:r -> 140579096268896:v
+	140579096275952 [label="<l>|<v> 5234.54|<r>"]
+	140579096275952:l -> 140579095819408:v
+	140579096275952:r -> 140579096327216:v
+	140579096320112 [label="<l>|<v> 583.48|<r>"]
+	140579096320112:l -> 140579096323280:v
+	140579096320112:r -> 140579096319104:v
+	140579096314688 [label="<l>|<v> CP001215.1 Bacillus_anthracis_str._CDC_684,\nBacillus_anthracis_str|<r>"]
+	140579096269040 [label="<l>|<v> 2463.53|<r>"]
+	140579096269040:l -> 140579096326304:v
+	140579096269040:r -> 140579096316272:v
+	140579096322608 [label="<l>|<v> 1134.89|<r>"]
+	140579096322608:l -> 140579096324432:v
+	140579096322608:r -> 140579096317664:v
+	140579096268224 [label="<l>|<v> 4851.35|<r>"]
+	140579096268224:l -> 140579096325584:v
+	140579096268224:r -> 140579096329376:v
+	140579096327744 [label="<l>|<v> 2294.16|<r>"]
+	140579096327744:l -> 140579096322224:v
+	140579096327744:r -> 140579096319776:v
+	140579096272256 [label="<l>|<v> 12330.16|<r>"]
+	140579096272256:l -> 140579096276240:v
+	140579096272256:r -> 140579096271488:v
+	140579096268896 [label="<l>|<v> 9274.19|<r>"]
+	140579096268896:l -> 140579096276096:v
+	140579096268896:r -> 140579096280896:v
+	140579095819408 [label="<l>|<v> 2301.36|<r>"]
+	140579095819408:l -> 140579096315168:v
+	140579095819408:r -> 140579096325008:v
+	140579096327216 [label="<l>|<v> NC_019382.1 Bordetella_bronchiseptica_253,\nBordetella_bronchiseptica_253|<r>"]
+	140579096323280 [label="<l>|<v> 71.12|<r>"]
+	140579096323280:l -> 140579096318384:v
+	140579096323280:r -> 140579096316656:v
+	140579096319104 [label="<l>|<v> CP000001.1 Bacillus_cereus_E33L,\nBacillus_cereus_E33L|<r>"]
+	140579096326304 [label="<l>|<v> 615.42|<r>"]
+	140579096326304:l -> 140579096321648:v
+	140579096326304:r -> 140579096324048:v
+	140579096316272 [label="<l>|<v> CP000144.2 Rhodobacter_sphaeroides_2.4.1\nRhodobactersphaeroides_2|<r>"]
+	140579096324432 [label="<l>|<v> 1045.28|<r>"]
+	140579096324432:l -> 140579096328128:v
+	140579096324432:r -> 140579096322080:v
+	140579096317664 [label="<l>|<v> CP001995.1 Mycoplasma_fermentans_JER,\nMycoplasma_fermentans_JER|<r>"]
+	140579096325584 [label="<l>|<v> 1833.03|<r>"]
+	140579096325584:l -> 140579096325440:v
+	140579096325584:r -> 140579096314640:v
+	140579096329376 [label="<l>|<v> 1473.57|<r>"]
+	140579096329376:l -> 140579096327984:v
+	140579096329376:r -> 140579096317184:v
+	140579096322224 [label="<l>|<v> 1064.82|<r>"]
+	140579096322224:l -> 140579096324720:v
+	140579096322224:r -> 140579096315312:v
+	140579096319776 [label="<l>|<v> CP000246.1 Clostridium_perfringens_ATCC_13124,\nClostridium_perfringens_ATCC_13124|<r>"]
+	140579096276240 [label="<l>|<v> 7383.94|<r>"]
+	140579096276240:l -> 140579096276000:v
+	140579096276240:r -> 140579096268656:v
+	140579096271488 [label="<l>|<v> 3248.28|<r>"]
+	140579096271488:l -> 140579096318432:v
+	140579096271488:r -> 140579096322464:v
+	140579096276096 [label="<l>|<v> 6755.47|<r>"]
+	140579096276096:l -> 140579096325152:v
+	140579096276096:r -> 140579096326544:v
+	140579096280896 [label="<l>|<v> 4252.32|<r>"]
+	140579096280896:l -> 140579096323232:v
+	140579096280896:r -> 140579096321120:v
+	140579096315168 [label="<l>|<v> NZ_CP016171.1 Bordetella_bronchialis_strain_AU17976\nBordetella_bronchialis_strain_AU17976|<r>"]
+	140579096325008 [label="<l>|<v> NZ_CP016172.1 Bordetella_flabilis_strain_AU10664\nBordetella_flabilis_strain_AU10664|<r>"]
+	140579096318384 [label="<l>|<v> 10.93|<r>"]
+	140579096318384:l -> 140579096327312:v
+	140579096318384:r -> 140579096319872:v
+	140579096316656 [label="<l>|<v> NC_017729.1 Bacillus_anthracis_str._H9401,\nBacillus_anthracis_str|<r>"]
+	140579096321648 [label="<l>|<v> CP000578.1 Cereibacter_sphaeroides_ATCC_17029\nRhodobactersphaeroides_ATCC_17029|<r>"]
+	140579096324048 [label="<l>|<v> CP001151.1 Rhodobacter_sphaeroides_KD131\nRhodobactersphaeroides_KD131|<r>"]
+	140579096328128 [label="<l>|<v> 826.07|<r>"]
+	140579096328128:l -> 140579096322992:v
+	140579096328128:r -> 140579096321792:v
+	140579096322080 [label="<l>|<v> 483.38|<r>"]
+	140579096322080:l -> 140579096323376:v
+	140579096322080:r -> 140579096323712:v
+	140579096325440 [label="<l>|<v> 1438.43|<r>"]
+	140579096325440:l -> 140579096320736:v
+	140579096325440:r -> 140579096324912:v
+	140579096314640 [label="<l>|<v> AM295250.1 Staphylococcus_carnosus_subsp._carnosus_TM300\nStaphylococcus_carnosus_subsp|<r>"]
+	140579096327984 [label="<l>|<v> 789.31|<r>"]
+	140579096327984:l -> 140579096320064:v
+	140579096327984:r -> 140579096324384:v
+	140579096317184 [label="<l>|<v> NC_010080.1 Lactobacillus_helveticus_DPC_4571,\nLactobacillus_helveticus_DPC_4571|<r>"]
+	140579096324720 [label="<l>|<v> CP000312.1 Clostridium_perfringens_SM101,\nClostridium_perfringens_SM101|<r>"]
+	140579096315312 [label="<l>|<v> BA000016.3 Clostridium_perfringens_str._13\nClostridium_perfringens_str|<r>"]
+	140579096276000 [label="<l>|<v> 4831.8|<r>"]
+	140579096276000:l -> 140579096270432:v
+	140579096276000:r -> 140579096325968:v
+	140579096268656 [label="<l>|<v> 2996.34|<r>"]
+	140579096268656:l -> 140579096321888:v
+	140579096268656:r -> 140579096317040:v
+	140579096318432 [label="<l>|<v> 1302.03|<r>"]
+	140579096318432:l -> 140579096324192:v
+	140579096318432:r -> 140579096328464:v
+	140579096322464 [label="<l>|<v> 1081.72|<r>"]
+	140579096322464:l -> 140579096325632:v
+	140579096322464:r -> 140579096330144:v
+	140579096325152 [label="<l>|<v> 2166.09|<r>"]
+	140579096325152:l -> 140579096322848:v
+	140579096325152:r -> 140579096326976:v
+	140579096326544 [label="<l>|<v> 700.98|<r>"]
+	140579096326544:l -> 140579096326016:v
+	140579096326544:r -> 140579096323760:v
+	140579096323232 [label="<l>|<v> 202.98|<r>"]
+	140579096323232:l -> 140579096321312:v
+	140579096323232:r -> 140579096319344:v
+	140579096321120 [label="<l>|<v> CP000747.1 Phenylobacterium_zucineum_HLK1,\nPhenylobacteriumzucineum_HLK1|<r>"]
+	140579096327312 [label="<l>|<v> 2.4|<r>"]
+	140579096327312:l -> 140579096323664:v
+	140579096327312:r -> 140579096318048:v
+	140579096319872 [label="<l>|<v> 1.2|<r>"]
+	140579096319872:l -> 140579096319584:v
+	140579096319872:r -> 140579096323040:v
+	140579096322992 [label="<l>|<v> CU179680.1 Mycoplasma_agalactiae_PG2\nMycoplasma_agalactiae_PG2|<r>"]
+	140579096321792 [label="<l>|<v> FM864216.2 Mycoplasma_conjunctivae_HRC/581T\nMycoplasma_conjunctivae_HRC-581T|<r>"]
+	140579096323376 [label="<l>|<v> 195.73|<r>"]
+	140579096323376:l -> 140579096323520:v
+	140579096323376:r -> 140579096317088:v
+	140579096323712 [label="<l>|<v> 32.29|<r>"]
+	140579096323712:l -> 140579096318144:v
+	140579096323712:r -> 140579096318912:v
+	140579096320736 [label="<l>|<v> 1236.87|<r>"]
+	140579096320736:l -> 140579096328800:v
+	140579096320736:r -> 140579096320400:v
+	140579096324912 [label="<l>|<v> 916.02|<r>"]
+	140579096324912:l -> 140579096314928:v
+	140579096324912:r -> 140579096328272:v
+	140579096320064 [label="<l>|<v> NC_005362.1 Lactobacillus_johnsonii_NCC_533,\nLactobacillus_johnsonii_NCC_533|<r>"]
+	140579096324384 [label="<l>|<v> NC_006814.3 Lactobacillus_acidophilus_NCFM,\nLactobacillus_acidophilus_NCFM|<r>"]
+	140579096270432 [label="<l>|<v> 3189.29|<r>"]
+	140579096270432:l -> 140579096318960:v
+	140579096270432:r -> 140579096325872:v
+	140579096325968 [label="<l>|<v> 698.94|<r>"]
+	140579096325968:l -> 140579096329616:v
+	140579096325968:r -> 140579096326112:v
+	140579096321888 [label="<l>|<v> 1072.31|<r>"]
+	140579096321888:l -> 140579096327648:v
+	140579096321888:r -> 140579096321840:v
+	140579096317040 [label="<l>|<v> AE005674.2 Shigella_flexneri_2a_str._301,\nShigella_flexneri_2a_str|<r>"]
+	140579096324192 [label="<l>|<v> NZ_CP012504.1 Aeromonas_veronii_strain_TH0426\nAeromonas_veronii_strain_TH0426|<r>"]
+	140579096328464 [label="<l>|<v> NZ_CP014774.1 Aeromonas_veronii_strain_AVNIH1\nAeromonas_veronii_strain_AVNIH1|<r>"]
+	140579096325632 [label="<l>|<v> 415.27|<r>"]
+	140579096325632:l -> 140579096319728:v
+	140579096325632:r -> 140579096321504:v
+	140579096330144 [label="<l>|<v> CP007518.2 Aeromonas_hydrophila_YL17,\nAeromonas_hydrophila_YL17|<r>"]
+	140579096322848 [label="<l>|<v> CP000091.1 Ralstonia_eutropha_JMP134\nRalstoniaeutropha_JMP134|<r>"]
+	140579096326976 [label="<l>|<v> AM260480.1 Ralstonia_eutropha_H16\nRalstoniaeutropha_H16|<r>"]
+	140579096326016 [label="<l>|<v> 316.0|<r>"]
+	140579096326016:l -> 140579096324576:v
+	140579096326016:r -> 140579096314448:v
+	140579096323760 [label="<l>|<v> CP000527.1 Desulfovibrio_vulgaris_DP4,\nDesulfovibrio_vulgaris_DP4|<r>"]
+	140579096321312 [label="<l>|<v> NC_011916.1 Caulobacter_crescentus_NA1000,\nCaulobacter_crescentus_NA1000|<r>"]
+	140579096319344 [label="<l>|<v> NC_002696.2 Caulobacter_vibrioides_CB15,\nCaulobacter_crescentus_CB15|<r>"]
+	140579096323664 [label="<l>|<v> CP001974.2 Bacillus_anthracis_str._A16R\nBacillus_anthracis_str|<r>"]
+	140579096318048 [label="<l>|<v> AE017225.1 Bacillus_anthracis_str._Sterne,\nBacillus_anthracis_str|<r>"]
+	140579096319584 [label="<l>|<v> AE016879.1 Bacillus_anthracis_str._Ames,\nBacillus_anthracis_str|<r>"]
+	140579096323040 [label="<l>|<v> CP001598.1 Bacillus_anthracis_str._A0248,\nBacillus_anthracis_str|<r>"]
+	140579096323520 [label="<l>|<v> CP000049.1 Borrelia_turicatae_91E135,\nBorrelia_turicatae_91E135|<r>"]
+	140579096317088 [label="<l>|<v> CP000048.1 Borrelia_hermsii_DAH,\nBorrelia_hermsii_DAH|<r>"]
+	140579096318144 [label="<l>|<v> CP000993.1 Borrelia_recurrentis_A1,\nBorrelia_recurrentis_A1|<r>"]
+	140579096318912 [label="<l>|<v> CP000976.1 Borrelia_duttonii_Ly,\nBorrelia_duttonii_Ly|<r>"]
+	140579096328800 [label="<l>|<v> CP001837.1 Staphylococcus_lugdunensis_HKU09-01,\nStaphylococcus_lugdunensis_HKU09-01|<r>"]
+	140579096320400 [label="<l>|<v> AP006716.1 Staphylococcus_haemolyticus_JCSC1435_DNA,\nStaphylococcus_haemolyticus_JCSC1435_DNA|<r>"]
+	140579096314928 [label="<l>|<v> AE015929.1 Staphylococcus_epidermidis_ATCC_12228,\nStaphylococcus_epidermidis_ATCC_12228|<r>"]
+	140579096328272 [label="<l>|<v> CP000029.1 Staphylococcus_epidermidis_RP62A,\nStaphylococcus_epidermidis_RP62A|<r>"]
+	140579096318960 [label="<l>|<v> 1389.95|<r>"]
+	140579096318960:l -> 140579096327504:v
+	140579096318960:r -> 140579096326688:v
+	140579096325872 [label="<l>|<v> 415.44|<r>"]
+	140579096325872:l -> 140579096315984:v
+	140579096325872:r -> 140579096319920:v
+	140579096329616 [label="<l>|<v> 466.71|<r>"]
+	140579096329616:l -> 140579096328992:v
+	140579096329616:r -> 140579096329136:v
+	140579096326112 [label="<l>|<v> 375.98|<r>"]
+	140579096326112:l -> 140579096315600:v
+	140579096326112:r -> 140579096327456:v
+	140579096327648 [label="<l>|<v> 764.51|<r>"]
+	140579096327648:l -> 140579096320976:v
+	140579096327648:r -> 140579096330000:v
+	140579096321840 [label="<l>|<v> FN392235.1 Erwinia_pyrifoliae_DSM_12163\nErwinia_pyrifoliae_DSM_12163|<r>"]
+	140579096319728 [label="<l>|<v> NZ_CP016380.1 Aeromonas_hydrophila_strain_AHNIH1\nAeromonas_hydrophila_strain_AHNIH1|<r>"]
+	140579096321504 [label="<l>|<v> NZ_CP016392.1 Aeromonas_hydrophila_strain_GYK1\nAeromonas_hydrophila_strain_GYK1|<r>"]
+	140579096324576 [label="<l>|<v> CP002297.1 Desulfovibrio_vulgaris_RCH1\nDesulfovibrio_vulgaris_RCH1|<r>"]
+	140579096314448 [label="<l>|<v> AE017285.1 Desulfovibrio_vulgaris_subsp._vulgaris_str._Hildenborough,\nDesulfovibrio_vulgaris_Hildenborough|<r>"]
+	140579096327504 [label="<l>|<v> 741.07|<r>"]
+	140579096327504:l -> 140579096323904:v
+	140579096327504:r -> 140579096320304:v
+	140579096326688 [label="<l>|<v> 717.18|<r>"]
+	140579096326688:l -> 140579096316032:v
+	140579096326688:r -> 140579096329856:v
+	140579096315984 [label="<l>|<v> CP000468.1 Escherichia_coli_APEC_O1,\nEscherichia_coli_APEC_O1|<r>"]
+	140579096319920 [label="<l>|<v> CP001671.1 Escherichia_coli_ABU_83972,\nEscherichia_coli_ABU_83972|<r>"]
+	140579096328992 [label="<l>|<v> 166.17|<r>"]
+	140579096328992:l -> 140579096327072:v
+	140579096328992:r -> 140579096328416:v
+	140579096329136 [label="<l>|<v> CP000308.1 Yersinia_pestis_Antiqua,\nYersinia_pestis_Antiqua|<r>"]
+	140579096315600 [label="<l>|<v> AE009952.1 Yersinia_pestis_KIM10+,\nYersinia_pestis_KIM10+|<r>"]
+	140579096327456 [label="<l>|<v> CP001593.1 Yersinia_pestis_Z176003,\nYersinia_pestis_Z176003|<r>"]
+	140579096320976 [label="<l>|<v> CP002124.1 Erwinia_sp._Ejp617,\nErwinia_sp|<r>"]
+	140579096330000 [label="<l>|<v> CU468135.1 Erwinia_tasmaniensis_strain_ET1/99\nErwinia_tasmaniensis_strain_ET1-99|<r>"]
+	140579096323904 [label="<l>|<v> CP000946.1 Escherichia_coli_ATCC_8739,\nEscherichia_coli_ATCC_8739|<r>"]
+	140579096320304 [label="<l>|<v> CP000038.1 Shigella_sonnei_Ss046,\nShigella_sonnei_Ss046|<r>"]
+	140579096316032 [label="<l>|<v> CP001665.1 Escherichia_coli_'BL21-Gold(DE3)pLysS_AG',\nEscherichia_coli_BL21|<r>"]
+	140579096329856 [label="<l>|<v> CP001383.1 Shigella_flexneri_2002017,\nShigella_flexneri_2002017|<r>"]
+	140579096327072 [label="<l>|<v> CP001585.1 Yersinia_pestis_D106004,\nYersinia_pestis_D106004|<r>"]
+	140579096328416 [label="<l>|<v> AL590842.1 Yersinia_pestis_CO92\nYersinia_pestis_CO92|<r>"]
+}
